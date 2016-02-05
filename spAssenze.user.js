@@ -3,7 +3,7 @@
 // @namespace   italianplayers.it
 // @description Uno script essenziale per gestire al meglio le proprie assenze
 // @include     https://web.spaggiari.eu/tic/app/default/consultasingolo.php#eventi
-// @version     1.0.1
+// @version     1.0.2
 // @updateURL 	https://github.com/Mirkiol/spaggiariAssenze/blob/master/spAssenze.user.js
 // @grant       GM_log
 // @grant       GM_addStyle
@@ -16,7 +16,7 @@ GM_addStyle ("\
         background: #E08C8C;                        \
     }                                               \
     div.f_reg_trip {                                \
-        background: green;                         \
+        background: purple;                         \
     }                                               \
     div.f_reg_last_school_day {                     \
         background: #4F4FE3;                        \
