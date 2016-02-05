@@ -3,7 +3,7 @@
 // @namespace   italianplayers.it
 // @description Uno script essenziale per gestire al meglio le proprie assenze
 // @include     *web.spaggiari.eu/tic/app/default/consultasingolo.php*
-// @version     1.1
+// @version     1.2
 // @updateURL 	https://github.com/Mirkiol/spaggiariAssenze/blob/master/spAssenze.user.js
 // @grant       GM_log
 // @grant       GM_addStyle
@@ -31,7 +31,6 @@ GM_addStyle ("\
 
 var months = ['gennaio','febbraio','marzo','aprile','maggio','giugno','luglio','agosto','settembre','ottobre','novembre','dicembre'];
 
-GM_log('prova');
 Date.holidays = {
 	0: [],
 	1: [],
@@ -48,12 +47,12 @@ Date.holidays = {
 };
 
 Date.trips = {
-	0: [],
-	1: [],
-	2: [30,31],
-	3: [1,2],
-	4: [],
-	5: [],
+  0: [],
+  1: [],
+  2: [30,31],
+  3: [1,2],
+  4: [],
+  5: [],
   6: [],
   7: [],
   8: [],
