@@ -15,7 +15,7 @@ GM_addStyle ("\
         background: #E08C8C;                        \
     }                                               \
     div.f_reg_trip {                                \
-        background: purple;                         \
+        background: green;                         \
     }                                               \
     div.f_reg_last_school_day {                     \
         background: #4F4FE3;                        \
