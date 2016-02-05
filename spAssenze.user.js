@@ -2,7 +2,7 @@
 // @name        Spaggiari Assenze
 // @namespace   italianplayers.it
 // @description Uno script essenziale per gestire al meglio le proprie assenze
-// @include     https://web.spaggiari.eu/tic/app/default/consultasingolo.php#eventi
+// @include     *web.spaggiari.eu/tic/app/default/consultasingolo.php*
 // @version     1.1
 // @updateURL 	https://github.com/Mirkiol/spaggiariAssenze/blob/master/spAssenze.user.js
 // @grant       GM_log
