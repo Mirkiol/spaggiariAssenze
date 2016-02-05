@@ -4,7 +4,7 @@
 // @description Uno script essenziale per gestire al meglio le proprie assenze
 // @include     *web.spaggiari.eu/tic/app/default/consultasingolo.php*
 // @version     1.2
-// @updateURL 	https://github.com/Mirkiol/spaggiariAssenze/blob/master/spAssenze.user.js
+// @updateURL 	https://github.com/Mirkiol/spaggiariAssenze/raw/master/spAssenze.user.js
 // @grant       GM_log
 // @grant       GM_addStyle
 // @run-at      document-idle
