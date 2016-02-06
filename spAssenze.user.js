@@ -60,6 +60,7 @@ Date.holidays = {
 
 Date.trips = JSON.parse(GM_getValue("trips",{}));
 
+var totalSchoolHours = 1023; //1056 con religione
 var skippedDays = parseInt($('#skeda_eventi tbody tr:nth-child(3) td:nth-child(2) p').html().match(/\([0-9]{1,} gg\)/)[0].substring(1));
 var skippedHours = parseInt($('#skeda_sintesi tbody tr:nth-child(4) td:nth-child(12) p:nth-child(2)').html().match(/: [0-9]{1,}/)[0].substring(2));
 var delays = parseInt($('#skeda_eventi tbody tr:nth-child(3) td:nth-child(4) p font').html());
@@ -220,6 +221,7 @@ $('td.f_reg_school,td.f_reg_trip,td.f_reg_last_school_day').click(function(e){
 
 // Info
 $('#footer_menu').before('<p>Mancano <b>'+leftSchoolDays+'</b> giorni effettivi di scuola, di cui '+tripDays+' di gita.</p>');
+$('#footer_menu').before('<p>Puoi saltare fino a '+((1023/4-skippedHours)/leftSchoolDays)+' ore al giorno</p>');
 
 setTimeout(function(){
     $('.switching_tab').hide(); $('#skeda_calendario').show();
