@@ -3,10 +3,12 @@
 // @namespace   italianplayers.it
 // @description Uno script essenziale per gestire al meglio le proprie assenze
 // @include     *web.spaggiari.eu/tic/app/default/consultasingolo.php*
-// @version     1.3
+// @version     1.4
 // @updateURL 	https://github.com/Mirkiol/spaggiariAssenze/raw/master/spAssenze.user.js
 // @grant       GM_log
 // @grant       GM_addStyle
+// @grant       GM_setValue 
+// @grant       GM_getValue
 // @run-at      document-idle
 // @require http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js
 // ==/UserScript==
@@ -25,6 +27,7 @@ GM_addStyle ("\
     td.f_reg_trip,                                  \
     td.f_reg_last_school_day{                       \
         background: white;                          \
+        cursor: pointer;                            \
     }                                               \
     td.f_reg_school p.s_reg_testo::after {          \
         content: 'S';                               \
@@ -46,29 +49,16 @@ Date.holidays = {
 	2: [24,25,26,27,28,29],
 	3: [23,25],
 	4: [1],
-    5: [2],
-    6: [],
-    7: [],
-    8: [],
-    9: [],
-    10: [],
-    11: []
+  5: [2],
+  6: [],
+  7: [],
+  8: [],
+  9: [],
+  10: [],
+  11: []
 };
 
-Date.trips = {
-    0: [],
-    1: [],
-    2: [30,31],
-    3: [1,2],
-    4: [],
-    5: [],
-    6: [],
-    7: [],
-    8: [],
-    9: [],
-    10: [],
-    11: []
-};
+Date.trips = JSON.parse(GM_getValue("trips",{}));
 
 var skippedDays = parseInt($('#skeda_eventi tbody tr:nth-child(3) td:nth-child(2) p').html().match(/\([0-9]{1,} gg\)/)[0].substring(1));
 var skippedHours = parseInt($('#skeda_sintesi tbody tr:nth-child(4) td:nth-child(12) p:nth-child(2)').html().match(/: [0-9]{1,}/)[0].substring(2));
@@ -124,10 +114,23 @@ function createCell(className, title){
 function toggleTripDay(cell){
     $(cell).toggleClass('f_reg_trip');
     $(cell).find('div').toggleClass('f_reg_trip');
-    if($(cell).hasClass('f_reg_trip'))
+  
+    var month = (parseInt(($(cell).parent().index()-2)/2)+8)%12;
+    var day = $(cell).index()-2+1;
+  
+    if($(cell).hasClass('f_reg_trip')){
+        if(!Array.isArray(Date.trips[month]))
+            Date.trips[month] = [];
+        Date.trips[month].push(day);
         tripDays++;
-    else
+    }else{
+        Date.trips[month].splice(
+            Date.trips[month].indexOf(day),
+            1
+        );
         tripDays--;
+    }
+    GM_setValue("trips",JSON.stringify(Date.trips));
 }
 
 function createSchoolDayCell(){
@@ -158,7 +161,10 @@ Date.prototype.next = function(){
 
 
 Date.prototype.isTrip = function(){
-    return Date.trips[this.getMonth()].contains(this.getDate());
+    if(Array.isArray(Date.trips[this.getMonth()]))
+        return Date.trips[this.getMonth()].contains(this.getDate());
+    else
+        return false;
 };
 
 Date.prototype.isHoliday = function(){
