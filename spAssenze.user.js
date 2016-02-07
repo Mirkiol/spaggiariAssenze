@@ -58,7 +58,7 @@ Date.holidays = {
   11: []
 };
 
-Date.trips = JSON.parse(GM_getValue("trips",{}));
+Date.trips = JSON.parse(GM_getValue("trips","{}"));
 
 var totalSchoolHours = 1023; //1056 con religione
 var skippedDays = parseInt($('#skeda_eventi tbody tr:nth-child(3) td:nth-child(2) p').html().match(/\([0-9]{1,} gg\)/)[0].substring(1));
@@ -131,7 +131,7 @@ function toggleTripDay(cell){
         );
         tripDays--;
     }
-    GM_setValue("trips",JSON.stringify(Date.trips));
+    //GM_setValue("trips",JSON.stringify(Date.trips));
 }
 
 function createSchoolDayCell(){
@@ -215,6 +215,7 @@ while(i.getTime() <= lastSchoolDay.getTime()){
     i.next();
 }
 
+console.log("asd");
 $('td.f_reg_school,td.f_reg_trip,td.f_reg_last_school_day').click(function(e){
     toggleTripDay(this);
 });
