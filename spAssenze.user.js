@@ -3,7 +3,7 @@
 // @namespace   italianplayers.it
 // @description Uno script essenziale per gestire al meglio le proprie assenze
 // @include     *web.spaggiari.eu/tic/app/default/consultasingolo.php*
-// @version     1.4
+// @version     1.4.1
 // @updateURL 	https://github.com/Mirkiol/spaggiariAssenze/raw/master/spAssenze.user.js
 // @grant       GM_log
 // @grant       GM_addStyle
@@ -131,7 +131,7 @@ function toggleTripDay(cell){
         );
         tripDays--;
     }
-    //GM_setValue("trips",JSON.stringify(Date.trips));
+    GM_setValue("trips",JSON.stringify(Date.trips));
 }
 
 function createSchoolDayCell(){
